@@ -159,7 +159,7 @@ dataGenerated <- function(parameters){
   l2_varExplained <-  with(parameters, ICC*gamma1^2)
   l2_residual <- l2_varTotal - l2_varExplained
   Y_between <- with(parameters, treat * gamma1 + rnorm(J, 0, sqrt(l2_residual)))
-  L2_Y <- Y_between %x% rep(1, nj)
+  L2_Y <- Y_between %x% with(parameters, rep(1, nj))
   
   Y <- Y_within + L2_Y
   data <- data.frame(X, Y)
